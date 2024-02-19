@@ -1,9 +1,5 @@
 package com.example.rickandmorty.data.model
 
-data class CharacterResponse(
-    val results: List<Character>
-)
-
 data class Character(
     val created: String,
     val episode: List<String>,
