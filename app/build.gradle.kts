@@ -79,6 +79,10 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }
 
 kapt {
