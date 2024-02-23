@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val service: ApiService) {
 
+    suspend fun getCharacters(page: Int) = service.getCharacters(page)
     suspend fun getCharacterById(id: Int): Character {
         try {
             val response = service.getCharacterById(id)

@@ -83,6 +83,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("androidx.paging:paging-compose:3.3.0-alpha03")
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 }
 
 kapt {
