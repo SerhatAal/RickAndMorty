@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.screen
+package com.example.rickandmorty.ui.screen.character.detail
 
 import androidx.lifecycle.ViewModel
 import com.example.rickandmorty.data.CharacterRepository

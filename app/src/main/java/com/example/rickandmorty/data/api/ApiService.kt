@@ -9,13 +9,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("${Constants.CHARACTER_END_POINT}/{id}")
-    suspend fun getCharacterById(
-        @Path("id") id: Int
-    ): Response<CharacterResponse>
-
     @GET(Constants.CHARACTER_END_POINT)
     suspend fun getCharacters(
         @Query("page") page: Int
     ): Response<CharactersResponse>
+
+    @GET("${Constants.CHARACTER_END_POINT}/{id}")
+    suspend fun getCharacterById(
+        @Path("id") id: Int
+    ): Response<CharacterResponse>
 }
