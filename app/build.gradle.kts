@@ -69,6 +69,29 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    implementation("androidx.compose.material:material:1.6.2")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("androidx.paging:paging-compose:3.3.0-alpha03")
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+}
+
+kapt {
+    correctErrorTypes = true
 }
