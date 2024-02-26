@@ -1,7 +1,7 @@
 package com.example.rickandmorty.ui.screen.character.detail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,6 +29,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.example.rickandmorty.domain.model.CharacterStatus
 import com.example.rickandmorty.ui.component.CharacterProperties
 import com.example.rickandmorty.ui.component.CharacterPropertyComponent
+import com.example.rickandmorty.ui.screen.character.CharacterStatusComponent
 
 @Composable
 fun CharacterDetailScreen(
@@ -47,12 +45,14 @@ fun CharacterDetailScreen(
 
     character?.let { characterDetail ->
         LazyColumn(
-            modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
             contentPadding = PaddingValues(all = 16.dp)
         ) {
 
             item {
-                CharacterName(name = characterDetail.name)
+                CharacterNameRow(name = characterDetail.name, characterDetail.status)
             }
             item { Spacer(modifier = Modifier.height(8.dp)) }
             item {
@@ -108,15 +108,22 @@ fun CharacterDetailScreen(
 }
 
 @Composable
-fun CharacterName(name: String) {
-    Text(
-        text = name,
-        fontSize = 24.sp,
-        lineHeight = 24.sp,
-        fontWeight = FontWeight.Bold,
-        style = MaterialTheme.typography.headlineMedium,
-        color = MaterialTheme.colorScheme.primary
-    )
+fun CharacterNameRow(name: String, characterStatus: CharacterStatus) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = name,
+            fontSize = 24.sp,
+            lineHeight = 24.sp,
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+        CharacterStatusComponent(characterStatus = characterStatus)
+    }
 }
 
 @Composable
@@ -132,30 +139,4 @@ fun CharacterImage(
             .aspectRatio(1f)
             .clip(RoundedCornerShape(8.dp)),
     )
-}
-
-@Composable
-fun CharacterStatusComponent(
-    characterStatus: CharacterStatus,
-) {
-    Row {
-        Box(
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .size(4.dp)
-                .background(color = characterStatus.color, shape = CircleShape)
-        )
-        CharacterPropertyComponent(
-            characterProperties = CharacterProperties(
-                title = "Status",
-                description = characterStatus.displayName
-            )
-        )
-    }
-}
-
-@Preview
-@Composable
-fun CharacterStatusComponentPreview() {
-    CharacterStatusComponent(characterStatus = CharacterStatus.Alive)
 }
