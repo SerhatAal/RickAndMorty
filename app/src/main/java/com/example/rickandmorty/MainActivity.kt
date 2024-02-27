@@ -23,8 +23,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MainScreen()
-                    //CharacterScreen()
-                    //CharacterDetailScreen(characterId = 31)
+
                 }
             }
         }
