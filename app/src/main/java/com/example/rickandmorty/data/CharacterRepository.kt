@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val service: ApiService) {
 
-    fun getCharacters(): Flow<PagingData<Character>> {
+    fun getCharacters(characterName: String): Flow<PagingData<Character>> {
         return Pager(
             config = PagingConfig(pageSize = 20, prefetchDistance = 2),
             pagingSourceFactory = {
-                CharactersPagingSource(service)
+                CharactersPagingSource(service, characterName)
             }
         ).flow.map { pagingData ->
             pagingData.map {

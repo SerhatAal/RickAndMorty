@@ -11,6 +11,7 @@ import retrofit2.http.Query
 interface ApiService {
     @GET(Constants.CHARACTER_END_POINT)
     suspend fun getCharacters(
+        @Query("name") characterName: String = "",
         @Query("page") page: Int
     ): Response<CharactersResponse>
 

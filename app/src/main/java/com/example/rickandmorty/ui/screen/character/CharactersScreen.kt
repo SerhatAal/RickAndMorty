@@ -22,6 +22,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +41,7 @@ import coil.compose.AsyncImage
 import com.example.rickandmorty.domain.model.Character
 import com.example.rickandmorty.ui.component.CharacterStatusComponent
 import com.example.rickandmorty.ui.component.ErrorMessage
+import com.example.rickandmorty.ui.component.SearchBarComponent
 
 @Composable
 fun CharacterScreen(
@@ -43,9 +50,38 @@ fun CharacterScreen(
 ) {
     val characters: LazyPagingItems<Character> =
         charactersViewModel.charactersState.collectAsLazyPagingItems()
-    CharacterPagingList(pagingItems = characters, onClick = onClick)
-}
+    val searchQuery by charactersViewModel.nameSearchQuery.collectAsState()
+    var isDeletingSearchQuery by remember { mutableStateOf(false) }
 
+    Column {
+        SearchBarComponent(
+            query = searchQuery,
+            onQueryChanged = { newQuery ->
+                charactersViewModel.setSearchQuery(newQuery)
+                isDeletingSearchQuery = newQuery.isEmpty()
+            },
+            placeholder = "Search character"
+        )
+
+        LaunchedEffect(searchQuery, isDeletingSearchQuery) {
+            if (isDeletingSearchQuery) {
+                charactersViewModel.getCharacters()
+            } else if (searchQuery.isNotEmpty()) {
+                charactersViewModel.getCharacters(searchQuery)
+            }
+        }
+
+        when (characters.loadState.refresh) {
+            is LoadState.Loading -> {
+                CircularLoadingIndicator()
+            }
+
+            else -> {
+                CharacterPagingList(pagingItems = characters, onClick = onClick)
+            }
+        }
+    }
+}
 
 @Composable
 fun CharacterPagingList(pagingItems: LazyPagingItems<Character>?, onClick: (Int) -> Unit) {
@@ -53,7 +89,6 @@ fun CharacterPagingList(pagingItems: LazyPagingItems<Character>?, onClick: (Int)
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.padding(8.dp)
     ) {
-        item { Spacer(modifier = Modifier.padding(4.dp)) }
         pagingItems?.itemCount?.let { itemCount ->
             items(itemCount) { index ->
                 val item = pagingItems[index]

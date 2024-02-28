@@ -8,7 +8,10 @@ import com.example.rickandmorty.data.CharacterRepository
 import com.example.rickandmorty.domain.model.Character
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,6 +23,14 @@ class CharactersViewModel @Inject constructor(
     private val _charactersState: MutableStateFlow<PagingData<Character>> =
         MutableStateFlow(value = PagingData.empty())
     val charactersState: MutableStateFlow<PagingData<Character>> get() = _charactersState
+
+    private val _nameSearchQuery = MutableStateFlow("")
+    val nameSearchQuery = _nameSearchQuery.asStateFlow()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = "",
+        )
 
     init {
         onEvent(CharactersEvent.GetCharacters)
@@ -35,13 +46,24 @@ class CharactersViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getCharacters() {
-        repository.getCharacters()
+    suspend fun getCharacters(name: String = "") {
+        val pagingData = if (name.isEmpty()) {
+            repository.getCharacters(name)
+        } else {
+            repository.getCharacters(name)
+        }
+
+        pagingData
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
             .collect {
                 _charactersState.value = it
             }
+    }
+
+    fun setSearchQuery(query: String) {
+        _nameSearchQuery.value = query
+        onEvent(CharactersEvent.GetCharacters)
     }
 }
 
