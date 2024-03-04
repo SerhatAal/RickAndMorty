@@ -2,6 +2,7 @@ package com.example.rickandmorty.data.api
 
 import com.example.rickandmorty.data.model.CharacterResponse
 import com.example.rickandmorty.data.model.CharactersResponse
+import com.example.rickandmorty.data.model.LocationsResponse
 import com.example.rickandmorty.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -19,4 +20,9 @@ interface ApiService {
     suspend fun getCharacterById(
         @Path("id") id: Int
     ): Response<CharacterResponse>
+
+    @GET(Constants.LOCATION_END_POINT)
+    suspend fun getLocations(
+        @Query("page") page: Int
+    ): Response<LocationsResponse>
 }

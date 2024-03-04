@@ -3,11 +3,9 @@ package com.example.rickandmorty.ui.screen.character
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.sharp.KeyboardArrowRight
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,6 +37,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import com.example.rickandmorty.domain.model.Character
 import com.example.rickandmorty.ui.component.CharacterStatusComponent
+import com.example.rickandmorty.ui.component.CircularLoadingIndicator
 import com.example.rickandmorty.ui.component.ErrorMessage
 import com.example.rickandmorty.ui.component.SearchBarComponent
 
@@ -135,17 +133,6 @@ fun CharacterPagingList(pagingItems: LazyPagingItems<Character>?, onClick: (Int)
             }
         }
         item { Spacer(modifier = Modifier.padding(4.dp)) }
-    }
-}
-
-@Composable
-private fun CircularLoadingIndicator() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        CircularProgressIndicator()
     }
 }
 
