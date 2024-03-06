@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 
-data class LocationsResponse(
+data class EpisodesResponse(
     val info: Info,
-    val results: List<LocationResponse>
+    val results: List<EpisodeResponse>
 )

@@ -2,6 +2,7 @@ package com.example.rickandmorty.data.api
 
 import com.example.rickandmorty.data.model.CharacterResponse
 import com.example.rickandmorty.data.model.CharactersResponse
+import com.example.rickandmorty.data.model.EpisodesResponse
 import com.example.rickandmorty.data.model.LocationsResponse
 import com.example.rickandmorty.utils.Constants
 import retrofit2.Response
@@ -25,4 +26,9 @@ interface ApiService {
     suspend fun getLocations(
         @Query("page") page: Int
     ): Response<LocationsResponse>
+
+    @GET(Constants.EPISODE_END_POINT)
+    suspend fun getEpisodes(
+        @Query("page") page: Int
+    ): Response<EpisodesResponse>
 }
