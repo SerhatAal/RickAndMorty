@@ -1,9 +1,10 @@
-package com.example.rickandmorty.data
+package com.example.rickandmorty.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.example.rickandmorty.data.paging.CharactersPagingSource
 import com.example.rickandmorty.data.api.ApiService
 import com.example.rickandmorty.data.model.toDomainCharacter
 import com.example.rickandmorty.domain.model.Character

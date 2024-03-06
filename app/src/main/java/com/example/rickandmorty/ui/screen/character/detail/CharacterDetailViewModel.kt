@@ -1,7 +1,7 @@
 package com.example.rickandmorty.ui.screen.character.detail
 
 import androidx.lifecycle.ViewModel
-import com.example.rickandmorty.data.CharacterRepository
+import com.example.rickandmorty.data.repository.CharacterRepository
 import com.example.rickandmorty.domain.model.Character
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
