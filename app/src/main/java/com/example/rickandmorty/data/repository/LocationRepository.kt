@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.rickandmorty.data.paging.LocationsPagingSource
 import com.example.rickandmorty.data.api.ApiService
-import com.example.rickandmorty.data.model.toDomainLocation
+import com.example.rickandmorty.data.model.location.toDomainLocation
 import com.example.rickandmorty.domain.model.Location
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

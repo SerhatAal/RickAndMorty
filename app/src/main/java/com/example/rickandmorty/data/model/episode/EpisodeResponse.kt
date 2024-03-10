@@ -1,4 +1,4 @@
-package com.example.rickandmorty.data.model
+package com.example.rickandmorty.data.model.episode
 
 import com.example.rickandmorty.domain.model.Episode
 import com.squareup.moshi.Json

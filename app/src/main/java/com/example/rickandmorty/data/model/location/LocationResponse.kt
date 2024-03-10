@@ -1,4 +1,4 @@
-package com.example.rickandmorty.data.model
+package com.example.rickandmorty.data.model.location
 
 import com.example.rickandmorty.domain.model.Location
 import com.squareup.moshi.JsonClass

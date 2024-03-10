@@ -3,7 +3,7 @@ package com.example.rickandmorty.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.data.api.ApiService
-import com.example.rickandmorty.data.model.EpisodeResponse
+import com.example.rickandmorty.data.model.episode.EpisodeResponse
 import java.io.IOException
 import javax.inject.Inject
 

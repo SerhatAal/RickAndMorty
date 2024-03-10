@@ -1,4 +1,4 @@
-package com.example.rickandmorty.data.model
+package com.example.rickandmorty.data.model.character
 
 import  com.example.rickandmorty.domain.model.Character
 import com.example.rickandmorty.domain.model.CharacterGender

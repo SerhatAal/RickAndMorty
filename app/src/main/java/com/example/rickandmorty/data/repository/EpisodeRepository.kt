@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.rickandmorty.data.api.ApiService
-import com.example.rickandmorty.data.model.toDomainEpisode
+import com.example.rickandmorty.data.model.episode.toDomainEpisode
 import com.example.rickandmorty.data.paging.EpisodesPagingSource
 import com.example.rickandmorty.domain.model.Episode
 import kotlinx.coroutines.flow.Flow

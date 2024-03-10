@@ -1,5 +1,6 @@
-package com.example.rickandmorty.data.model
+package com.example.rickandmorty.data.model.episode
 
+import com.example.rickandmorty.data.model.Info
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
