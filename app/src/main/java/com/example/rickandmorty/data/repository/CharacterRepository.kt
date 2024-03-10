@@ -1,11 +1,12 @@
-package com.example.rickandmorty.data
+package com.example.rickandmorty.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.example.rickandmorty.data.paging.CharactersPagingSource
 import com.example.rickandmorty.data.api.ApiService
-import com.example.rickandmorty.data.model.toDomainCharacter
+import com.example.rickandmorty.data.model.character.toDomainCharacter
 import com.example.rickandmorty.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,11 +15,11 @@ import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val service: ApiService) {
 
-    fun getCharacters(): Flow<PagingData<Character>> {
+    fun getCharacters(characterName: String): Flow<PagingData<Character>> {
         return Pager(
             config = PagingConfig(pageSize = 20, prefetchDistance = 2),
             pagingSourceFactory = {
-                CharactersPagingSource(service)
+                CharactersPagingSource(service, characterName)
             }
         ).flow.map { pagingData ->
             pagingData.map {

@@ -1,9 +1,11 @@
-package com.example.rickandmorty.data.model
+package com.example.rickandmorty.data.model.character
 
 import  com.example.rickandmorty.domain.model.Character
 import com.example.rickandmorty.domain.model.CharacterGender
 import com.example.rickandmorty.domain.model.CharacterStatus
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class CharacterResponse(
     val id: Int,
     val name: String,
@@ -18,11 +20,13 @@ data class CharacterResponse(
     val url: String,
     val created: String
 ) {
+    @JsonClass(generateAdapter = true)
     data class Origin(
         val name: String,
         val url: String
     )
 
+    @JsonClass(generateAdapter = true)
     data class Location(
         val name: String,
         val url: String

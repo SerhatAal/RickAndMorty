@@ -29,7 +29,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.example.rickandmorty.domain.model.CharacterStatus
 import com.example.rickandmorty.ui.component.CharacterProperties
 import com.example.rickandmorty.ui.component.CharacterPropertyComponent
-import com.example.rickandmorty.ui.screen.character.CharacterStatusComponent
+import com.example.rickandmorty.ui.component.CharacterStatusComponent
 
 @Composable
 fun CharacterDetailScreen(
@@ -89,7 +89,7 @@ fun CharacterDetailScreen(
             item {
                 CharacterPropertyComponent(
                     characterProperties = CharacterProperties(
-                        title = "Location",
+                        title = "Last known location",
                         description = characterDetail.location.name
                     )
                 )
